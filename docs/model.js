@@ -244,7 +244,7 @@ export const model = (window.model = proxy({
 
         15: Izzy,
         16: TBD,
-        17: TBD,
+        17: Owen,
         18: TBD,
         19: TBD,
 
