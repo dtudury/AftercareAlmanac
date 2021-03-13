@@ -101,7 +101,6 @@ const days = () => {
   }
   return output;
 };
-console.log(days());
 
 render(
   document.body,
