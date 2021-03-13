@@ -83,7 +83,7 @@ const days = () => {
           })[0];
         }
         lastDate[person] = realDate;
-        output[dayName] = { name: person, date };
+        output[dayName] = { name: person, date, displayDate: `${monthName.substr(0, 3)} ${dateName}` };
         output[dayName].classes = classesForPersonDate(
           output[dayName],
           dayName
@@ -111,7 +111,7 @@ render(
       (person, date) => h`
         <div id=${person.id} class=${person.classes}>
           <div class="inner">
-            <span>${date}</span>: 
+            <span>${person.displayDate}</span>
             <div>${person.name}</div>
             ${showIfElse(
               () => person.count != null,
