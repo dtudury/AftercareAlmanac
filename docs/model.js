@@ -9,16 +9,36 @@ const Sofia = "Sofia";
 const Tyler = "Tyler";
 
 const Holiday = "Holiday";
-const TBD = "TBD";
+export const TBD = "TBD";
 
 export const model = (window.model = proxy({
-  families: {
-    [Izzy]: Izzy,
-    [Ella]: Ella,
-    [Owen]: Owen,
-    [Barrett]: Barrett,
-    [Sofia]: Sofia,
-    [Tyler]: Tyler,
+  rules: {
+    [Izzy]: {
+      skipDates: [
+        "April 12 2021",
+        "April 13 2021",
+        "April 14 2021",
+        "April 15 2021",
+        "April 16 2021",
+
+        "April 19 2021"
+      ]
+    },
+    [Ella]: {
+      skipDays: [1,2,3,5]
+    },
+    [Owen]: {
+      skipDays: [1,2,4,5]
+    },
+    [Barrett]: {
+      skipDays: [1,2,3,4]
+    },
+    [Sofia]: {
+      skipDays: [1,3,4,5]
+    },
+    [Tyler]: {
+      skipDays: [2,3,4,5]
+    },
   },
   history: {
     2020: {

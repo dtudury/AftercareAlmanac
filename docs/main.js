@@ -6,7 +6,7 @@ import {
   showIfElse
 } from "./horseless.0.5.2.min.esm.js";
 
-import { model } from "./model.js";
+import { model, TBD } from "./model.js";
 
 const dayNames = [
   "Sunday",
@@ -32,6 +32,7 @@ const monthNames = [
   "December"
 ];
 const now = new Date();
+
 const classesForPersonDate = (person, date) => [
   "day",
   person.name,
@@ -43,16 +44,37 @@ const classesForPersonDate = (person, date) => [
 const days = () => {
   const output = {};
   const counts = {};
+  const lastDate = {};
+  const ruleNames = Object.keys(model.rules);
   for (const yearName in model.history) {
     const year = model.history[yearName];
     for (const monthName in year) {
       const month = year[monthName];
       for (const dateName in month) {
-        const person = month[dateName];
-        const date ={monthName, dateName, yearName}
+        const date = {monthName, dateName, yearName};
         const dayName = `${monthName} ${dateName} ${yearName}`;
+        const realDate = new Date(dayName);
+        let person = month[dateName];
+        if (person === TBD) {
+          ruleNames.sort((a, b) => counts[a] - counts[b])
+          person = ruleNames.filter(ruleName => {
+            if (realDate - lastDate[ruleName] < 2*24*60*60*1000) {
+              return false;
+            }
+            const skipDays = model.rules[ruleName]?.skipDays || []
+            if (skipDays.includes(realDate.getDay())) {
+              return false;
+            }
+            const skipDates = (model.rules[ruleName]?.skipDates?.map(d => d.toString()) || []);
+            if (skipDates.includes(realDate.toString())) {
+              return false;
+            }
+            return true;
+          })[0];
+        }
+        lastDate[person] = realDate;
         output[dayName] = {name: person, date};
-        if (model.families[person]) {
+        if (model.rules[person]) {
           counts[person] = (counts[person] || 0) + 1
           output[dayName].count = counts[person];
         }
