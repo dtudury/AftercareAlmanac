@@ -47,6 +47,7 @@ const days = () => {
   const counts = {};
   const lastDate = {};
   const ruleNames = Object.keys(model.rules);
+  let inPast = true;
   for (const yearName in model.history) {
     const year = model.history[yearName];
     for (const monthName in year) {
@@ -57,7 +58,12 @@ const days = () => {
         const realDate = new Date(dayName);
         let person = month[dateName];
         if (person === TBD) {
-          ruleNames.sort((a, b) => counts[a] - counts[b]);
+          ruleNames.sort((a, b) => {
+            if (counts[a] != counts[b]) {
+              return counts[a] - counts[b];
+            }
+            return lastDate[a] - lastDate[b];
+          });
           person = ruleNames.filter(ruleName => {
             if (realDate - lastDate[ruleName] < 2 * 24 * 60 * 60 * 1000) {
               return false;
@@ -67,7 +73,9 @@ const days = () => {
               return false;
             }
             const skipDates =
-              model.rules[ruleName]?.skipDates?.map(d => d.toString()) || [];
+              model.rules[ruleName]?.skipDates?.map(d =>
+                new Date(d).toString()
+              ) || [];
             if (skipDates.includes(realDate.toString())) {
               return false;
             }
@@ -76,6 +84,14 @@ const days = () => {
         }
         lastDate[person] = realDate;
         output[dayName] = { name: person, date };
+        output[dayName].classes = classesForPersonDate(
+          output[dayName],
+          dayName
+        );
+        if (inPast && now < realDate) {
+          inPast = false;
+          output[dayName].id = "future";
+        }
         if (model.rules[person]) {
           counts[person] = (counts[person] || 0) + 1;
           output[dayName].count = counts[person];
@@ -85,6 +101,7 @@ const days = () => {
   }
   return output;
 };
+console.log(days());
 
 render(
   document.body,
@@ -92,7 +109,7 @@ render(
     ${mapEntries(
       days,
       (person, date) => h`
-        <div class=${() => classesForPersonDate(person, date)}>
+        <div id=${person.id} class=${person.classes}>
           <div class="inner">
             <span>${date}</span>: 
             <div>${person.name}</div>
@@ -108,3 +125,7 @@ render(
     )}
   `
 );
+
+setTimeout(() => {
+  document.querySelector("#future").scrollIntoView({ behavior: "smooth" });
+}, 100);
