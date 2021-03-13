@@ -8,6 +8,7 @@ import {
 import { model } from "./model.js";
 
 const historyAsDays = () => {
+  const counts = {}
   const output = {};
   for (const yearName in model.history) {
     const year = model.history[yearName];
@@ -15,8 +16,9 @@ const historyAsDays = () => {
       const month = year[monthName];
       for (const dateName in month) {
         const person = month[dateName];
+        counts[person] = (counts[person] || 0) + 1
         const date = `${monthName.substr(0, 3)} ${dateName} ${yearName}`;
-        output[date] = person;
+        output[date] = {name: person, count: counts[person]};
       }
     }
   }
@@ -63,7 +65,7 @@ render(
       (person, date) => h`
         <div class=${() => classesForPersonDate(person, date)}>
           <span>${date}</span>: 
-          <span>${person}</span>
+          <span>${person.name}, ${person.count}</span>
         </div>
       `
     )}
