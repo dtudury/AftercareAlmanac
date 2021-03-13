@@ -3,22 +3,58 @@
 <html lang="en">
 
 <head>
-    <title>Aftercare Almanac - A data driven day-care divvy-upper</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {
-            margin: 0;
-        }
-
-        canvas {
-            display: block;
-        }
-    </style>
+	<title>Aftercare Almanac - A data driven day-care divvy-upper</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		body {
+			display: grid;
+			grid-template-columns: repeat(5, 1fr);
+			gap: 10px;
+		}
+    .day {
+      border-radius: 1em;
+      padding: 1em;
+      text-transform: capitalize;
+    }
+    .Monday {
+      grid-column: 1;
+    }
+    .Tuesday {
+      grid-column: 2;
+    }
+    .Wednesday {
+      grid-column: 3;
+    }
+    .Thursday {
+      grid-column: 4;
+    }
+    .Friday {
+      grid-column: 5;
+    }
+    .January,
+    .March,
+    .May,
+    .July,
+    .September,
+    .November 
+    {
+      background: #ffc;
+    }
+    .February,
+    .April,
+    .June,
+    .August,
+    .October,
+    .December 
+    {
+      background: #dff;
+    }
+	</style>
 </head>
 
 <body>
-    <script type="module" src="main.js"></script>
+	<script type="module" src="main.js"></script>
 </body>
 
 </html>
