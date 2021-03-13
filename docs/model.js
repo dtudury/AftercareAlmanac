@@ -1,18 +1,17 @@
-import { proxy } from './horseless.0.5.2.min.esm.js'
+import { proxy } from "./horseless.0.5.2.min.esm.js";
 
-const Izzy = 'Izzy'
-const Ella = 'Ella'
-const Audrey = 'Audrey'
-const Owen = 'Owen'
-const Barrett = 'Barrett'
-const Sofia = 'Sofia'
-const Tyler = 'Tyler'
+const Izzy = "Izzy";
+const Ella = "Ella";
+const Audrey = "Audrey";
+const Owen = "Owen";
+const Barrett = "Barrett";
+const Sofia = "Sofia";
+const Tyler = "Tyler";
 
-const Holiday = 'Holiday'
-const TBD = 'TBD'
+const Holiday = "Holiday";
+const TBD = "TBD";
 
-
-export const model = window.model = proxy({
+export const model = (window.model = proxy({
   history: {
     2020: {
       august: {
@@ -146,7 +145,7 @@ export const model = window.model = proxy({
         28: Holiday,
         29: Holiday,
         30: Holiday,
-        31: Holiday,
+        31: Holiday
       }
     },
     2021: {
@@ -175,7 +174,7 @@ export const model = window.model = proxy({
         26: Audrey,
         27: Tyler,
         28: Owen,
-        29: Barrett,
+        29: Barrett
       },
       february: {
         1: Sofia,
@@ -219,4 +218,4 @@ export const model = window.model = proxy({
       }
     }
   }
-})
+}));
