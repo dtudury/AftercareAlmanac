@@ -12,6 +12,14 @@ const Holiday = "Holiday";
 const TBD = "TBD";
 
 export const model = (window.model = proxy({
+  families: {
+    [Izzy]: Izzy,
+    [Ella]: Ella,
+    [Owen]: Owen,
+    [Barrett]: Barrett,
+    [Sofia]: Sofia,
+    [Tyler]: Tyler,
+  },
   history: {
     2020: {
       august: {
@@ -214,7 +222,74 @@ export const model = (window.model = proxy({
         11: Izzy,
         12: Barrett,
 
-        15: TBD
+        15: Izzy,
+        16: TBD,
+        17: TBD,
+        18: TBD,
+        19: TBD,
+
+        22: TBD,
+        23: TBD,
+        24: TBD,
+        25: TBD,
+        26: TBD,
+
+        29: TBD,
+        30: TBD,
+        31: TBD,
+      },
+      april: {
+        1: TBD,
+        2: TBD,
+
+        5: Holiday,
+        6: Holiday,
+        7: Holiday,
+        8: Holiday,
+        9: Holiday,
+
+        12: TBD,
+        13: TBD,
+        14: TBD,
+        15: TBD,
+        16: TBD,
+
+        19: TBD,
+        20: TBD,
+        21: TBD,
+        22: TBD,
+        23: TBD,
+
+        26: TBD,
+        27: TBD,
+        28: TBD,
+        29: TBD,
+        30: TBD,
+      },
+      may: {
+        3: TBD,
+        4: TBD,
+        5: TBD,
+        6: TBD,
+        7: TBD,
+
+        10: TBD,
+        11: TBD,
+        12: TBD,
+        13: TBD,
+        14: TBD,
+
+        17: TBD,
+        18: TBD,
+        19: TBD,
+        20: TBD,
+        21: TBD,
+
+        24: TBD,
+        25: TBD,
+        26: TBD,
+        27: TBD,
+        28: TBD,
       }
     }
   }
