@@ -25,20 +25,20 @@ export const model = (window.model = proxy({
       ]
     },
     [Ella]: {
-      skipDays: [1,2,3,5]
+      skipDays: [1, 2, 3, 5]
     },
     [Owen]: {
-      skipDays: [1,2,4,5]
+      skipDays: [1, 2, 4, 5]
     },
     [Barrett]: {
-      skipDays: [1,2,3,4]
+      skipDays: [1, 2, 3, 4]
     },
     [Sofia]: {
-      skipDays: [1,3,4,5]
+      skipDays: [1, 3, 4, 5]
     },
     [Tyler]: {
-      skipDays: [2,3,4,5]
-    },
+      skipDays: [2, 3, 4, 5]
+    }
   },
   history: {
     2020: {
@@ -256,7 +256,7 @@ export const model = (window.model = proxy({
 
         29: TBD,
         30: TBD,
-        31: TBD,
+        31: TBD
       },
       april: {
         1: TBD,
@@ -284,7 +284,7 @@ export const model = (window.model = proxy({
         27: TBD,
         28: TBD,
         29: TBD,
-        30: TBD,
+        30: TBD
       },
       may: {
         3: TBD,
@@ -309,7 +309,7 @@ export const model = (window.model = proxy({
         25: TBD,
         26: TBD,
         27: TBD,
-        28: TBD,
+        28: TBD
       }
     }
   }

@@ -33,13 +33,14 @@ const monthNames = [
 ];
 const now = new Date();
 
-const classesForPersonDate = (person, date) => [
-  "day",
-  person.name,
-  dayNames[new Date(date).getDay()],
-  monthNames[new Date(date).getMonth()],
-  (new Date(date) > now ? "future" : "past")
-].join(" ");
+const classesForPersonDate = (person, date) =>
+  [
+    "day",
+    person.name,
+    dayNames[new Date(date).getDay()],
+    monthNames[new Date(date).getMonth()],
+    new Date(date) > now ? "future" : "past"
+  ].join(" ");
 
 const days = () => {
   const output = {};
@@ -51,21 +52,22 @@ const days = () => {
     for (const monthName in year) {
       const month = year[monthName];
       for (const dateName in month) {
-        const date = {monthName, dateName, yearName};
+        const date = { monthName, dateName, yearName };
         const dayName = `${monthName} ${dateName} ${yearName}`;
         const realDate = new Date(dayName);
         let person = month[dateName];
         if (person === TBD) {
-          ruleNames.sort((a, b) => counts[a] - counts[b])
+          ruleNames.sort((a, b) => counts[a] - counts[b]);
           person = ruleNames.filter(ruleName => {
-            if (realDate - lastDate[ruleName] < 2*24*60*60*1000) {
+            if (realDate - lastDate[ruleName] < 2 * 24 * 60 * 60 * 1000) {
               return false;
             }
-            const skipDays = model.rules[ruleName]?.skipDays || []
+            const skipDays = model.rules[ruleName]?.skipDays || [];
             if (skipDays.includes(realDate.getDay())) {
               return false;
             }
-            const skipDates = (model.rules[ruleName]?.skipDates?.map(d => d.toString()) || []);
+            const skipDates =
+              model.rules[ruleName]?.skipDates?.map(d => d.toString()) || [];
             if (skipDates.includes(realDate.toString())) {
               return false;
             }
@@ -73,9 +75,9 @@ const days = () => {
           })[0];
         }
         lastDate[person] = realDate;
-        output[dayName] = {name: person, date};
+        output[dayName] = { name: person, date };
         if (model.rules[person]) {
-          counts[person] = (counts[person] || 0) + 1
+          counts[person] = (counts[person] || 0) + 1;
           output[dayName].count = counts[person];
         }
       }
@@ -94,9 +96,12 @@ render(
           <div class="inner">
             <span>${date}</span>: 
             <div>${person.name}</div>
-            ${showIfElse(() => person.count != null, h`
+            ${showIfElse(
+              () => person.count != null,
+              h`
             <div>count: ${person.count}</div>
-            `)}
+            `
+            )}
           </div>
         </div>
       `
