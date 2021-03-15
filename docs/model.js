@@ -244,17 +244,17 @@ export const model = (window.model = proxy({
 
         15: Izzy,
         16: TBD,
-        17: TBD,
-        18: TBD,
+        17: Owen,
+        18: Ella,
         19: Barrett,
 
         22: Tyler,
         23: TBD,
         24: TBD,
-        25: TBD,
+        25: Ella,
         26: TBD,
 
-        29: TBD,
+        29: Tyler,
         30: TBD,
         31: TBD
       },
@@ -280,7 +280,7 @@ export const model = (window.model = proxy({
         22: TBD,
         23: TBD,
 
-        26: TBD,
+        26: Tyler,
         27: TBD,
         28: TBD,
         29: TBD,
@@ -309,7 +309,7 @@ export const model = (window.model = proxy({
         25: TBD,
         26: TBD,
         27: TBD,
-        28: TBD
+        28: Barrett
       }
     }
   }
