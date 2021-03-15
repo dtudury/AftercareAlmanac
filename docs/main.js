@@ -82,8 +82,17 @@ const days = () => {
             return true;
           })[0];
         }
-        lastDate[person] = realDate;
-        output[dayName] = { name: person, date, displayDate: `${monthName.substr(0, 3)} ${dateName}` };
+        if (!Array.isArray(person)) {
+          person = [person];
+        }
+        output[dayName] = { name: person.join('/'), date, displayDate: `${monthName.substr(0, 3)} ${dateName}` };
+        person.forEach(p => {
+          lastDate[p] = realDate;
+          if (model.rules[p]) {
+            counts[p] = (counts[p] || 0) + 1;
+            output[dayName].count = counts[p];
+          }
+        })
         output[dayName].classes = classesForPersonDate(
           output[dayName],
           dayName
@@ -91,10 +100,6 @@ const days = () => {
         if (inPast && now < realDate) {
           inPast = false;
           output[dayName].id = "future";
-        }
-        if (model.rules[person]) {
-          counts[person] = (counts[person] || 0) + 1;
-          output[dayName].count = counts[person];
         }
       }
     }
